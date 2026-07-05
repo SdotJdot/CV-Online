@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پلتفرم نمایش مدل‌های مهندسی</title>
     
-    <!-- فراخوانی مدل ویور برای نمایش سه بعدی -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
     
-    <!-- فونت گوگل (برای ظاهر بهتر) -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap" rel="stylesheet">
 
     <style>
@@ -100,9 +98,9 @@
 
         .btn-view:hover { background-color: #2980b9; }
 
-        /* Modal Style (پنجره نمایش مدل) */
+        /* Modal Style */
         .modal {
-            display: none; /* در ابتدا مخفی است */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -160,7 +158,7 @@
 <div class="container">
     <div class="grid">
         
-        <!-- کارت مدل اول -->
+      
         <div class="card">
             <img src="models/Hip_implant/hip implant isometic.JPG" alt="Hip Implant">
             <div class="card-content">
@@ -169,7 +167,7 @@
             </div>
         </div>
 
-        <!-- کارت مدل دوم (نمونه) -->
+      
         <div class="card">
             <img src="https://via.placeholder.com/400x250?text=Engine+Part" alt="Engine Part">
             <div class="card-content">
@@ -178,7 +176,7 @@
             </div>
         </div>
 
-        <!-- کارت مدل سوم (نمونه) -->
+     
         <div class="card">
             <img src="https://via.placeholder.com/400x250?text=Gear+System" alt="Gear System">
             <div class="card-content">
@@ -190,7 +188,7 @@
     </div>
 </div>
 
-<!-- ساختار Modal برای نمایش مدل -->
+
 <div id="modelModal" class="modal">
     <span class="close-btn" onclick="closeModel()">&times;</span>
     <div class="modal-content">
@@ -208,19 +206,19 @@
     const modal = document.getElementById("modelModal");
     const viewer = document.getElementById("viewer");
 
-    // تابع باز کردن مدل
+    
     function openModel(modelPath) {
-        viewer.src = modelPath; // تغییر مسیر فایل بر اساس دکمه کلیک شده
+        viewer.src = modelPath; 
         modal.style.display = "flex";
     }
 
-    // تابع بستن مدل
+
     function closeModel() {
         modal.style.display = "none";
-        viewer.src = ""; // برای متوقف شدن چرخش مدل در پس‌زمینه
+        viewer.src = "";
     }
 
-    // بستن با کلیک روی فضای خارج از پنجره
+  
     window.onclick = function(event) {
         if (event.target == modal) {
             closeModel();
