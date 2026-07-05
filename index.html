@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پلتفرم نمایش مدل‌های مهندسی</title>
+    
+    <!-- فراخوانی مدل ویور برای نمایش سه بعدی -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    
+    <!-- فونت گوگل (برای ظاهر بهتر) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+        }
+
+        /* Gallery Grid */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-content h3 { margin: 10px 0; font-size: 1.2rem; }
+
+        .btn-view {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.3s;
+        }
+
+        .btn-view:hover { background-color: #2980b9; }
+
+        /* Modal Style (پنجره نمایش مدل) */
+        .modal {
+            display: none; /* در ابتدا مخفی است */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            height: 80vh;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>کتابخانه قطعات بیومکانیکی</h1>
+    <nav>خانه | مدل‌ها | درباره نویسنده</nav>
+</header>
+
+<section class="hero">
+    <h2>کتابخانه دیجیتال مدل‌های مهندسی</h2>
+    <p>مرکز مشاهده و بررسی مدل‌های سه بعدی با دقت بالا</p>
+</section>
+
+<div class="container">
+    <div class="grid">
+        
+        <!-- کارت مدل اول -->
+        <div class="card">
+            <img src="models/Hip_implant/hip implant isometic.JPG" alt="Hip Implant">
+            <div class="card-content">
+                <h3>Hip Implant Model</h3>
+                <button class="btn-view" onclick="openModel('models/Hip_implant/hip_implant_for_github_page.glb')">مشاهده سه بعدی</button>
+            </div>
+        </div>
+
+        <!-- کارت مدل دوم (نمونه) -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250?text=Engine+Part" alt="Engine Part">
+            <div class="card-content">
+                <h3>Engine Component</h3>
+                <button class="btn-view" onclick="openModel('models/engine/part.glb')">مشاهده سه بعدی</button>
+            </div>
+        </div>
+
+        <!-- کارت مدل سوم (نمونه) -->
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250?text=Gear+System" alt="Gear System">
+            <div class="card-content">
+                <h3>Gear System</h3>
+                <button class="btn-view" onclick="openModel('models/gears/system.glb')">مشاهده سه بعدی</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ساختار Modal برای نمایش مدل -->
+<div id="modelModal" class="modal">
+    <span class="close-btn" onclick="closeModel()">&times;</span>
+    <div class="modal-content">
+        <model-viewer id="viewer" 
+            camera-controls 
+            auto-rotate 
+            shadow-intensity="1"
+            environment-image="neutral"
+            exposure="1">
+        </model-viewer>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("modelModal");
+    const viewer = document.getElementById("viewer");
+
+    // تابع باز کردن مدل
+    function openModel(modelPath) {
+        viewer.src = modelPath; // تغییر مسیر فایل بر اساس دکمه کلیک شده
+        modal.style.display = "flex";
+    }
+
+    // تابع بستن مدل
+    function closeModel() {
+        modal.style.display = "none";
+        viewer.src = ""; // برای متوقف شدن چرخش مدل در پس‌زمینه
+    }
+
+    // بستن با کلیک روی فضای خارج از پنجره
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModel();
+        }
+    }
+</script>
+
+</body>
+</html>
